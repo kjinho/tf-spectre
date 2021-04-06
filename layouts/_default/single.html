@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+{{ $announce := false }}
+{{ if eq "announcements/" .File.Dir }}
+{{ $announce = true }}
+{{ end }}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">{{if $announce}}{{i18n "announcement"}}: {{end}}{{ .Title }}</h3>
+        {{if $announce}}{{ $dateFormat := .Site.Params.dateFormat | default "January 2, 2006" }}
+        <h6 class="card-meta">{{ .PublishDate.Format $dateFormat }}</h6>{{end}}
+        <h6 class="card-meta"><a href="{{ .Permalink | relURL }}">{{ .Permalink | relURL }}</a></h6>
+    </div>
+    <div class="card-body">
+        {{ .Content }}
+    </div>
+    {{if $announce}}
+    <div class="card-footer btn-group btn-sm">
+
+        <a {{ if .PrevInSection }}href="{{ .PrevInSection.Permalink | relURL }}"{{ else }}disabled{{ end }} class="btn">{{T "previous"}}</a>
+
+        <a href="{{ "/announcements" | relLangURL }}" class="btn"><i class="fas fa-home" aria-hidden="true"></i> {{T "all"}}</a>
+
+        <a {{ if .NextInSection }}href="{{ .NextInSection.Permalink | relURL }}"{{ else }}disabled{{ end }} class="btn">{{T "next"}}</a>
+    </div>
+    {{end}}
+</div>
+<br/>
+{{ end }}

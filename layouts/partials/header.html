@@ -1,0 +1,43 @@
+<!-- begin website header -->
+{{- $currentPage := . -}}
+<div class="container">
+    <header class="navbar">
+        <section class="navbar-section">
+            <a href="#" class="navbar-brand">
+                <img src="{{ "/images/mrdk-logo.svg" | relURL }}" class="logo" height="100px"/>
+            </a>
+        </section>
+        
+        <section class="navbar-section">
+            <div class="btn-group navbar-section">
+                <!-- menu component -->
+                {{ if .IsTranslated }}
+                {{ range .AllTranslations }}
+                <a class="btn{{ if eq $currentPage.Language .Language }} btn-primary{{ end }}" {{ if eq $currentPage.Language .Language }}disabled{{ else }}href="{{ .Permalink }}" {{ end }}>{{ .Language.LanguageName }}</a>
+                {{ end }}
+                {{ end }}
+            </div>
+        </section>
+    </header>
+</div>
+  
+  <br/>
+  
+<div class="text-center">
+    <h1>{{ $.Site.Title }}</h1>
+</div>
+  
+<div class="text-center">
+    <ul class="tab tab-block">
+        {{ $pageURL:= $currentPage.RelPermalink | relLangURL }}
+        {{ range .Site.Menus.main }}
+        {{ $menuItemURL := .URL | relLangURL }}
+        <li class="tab-item">
+            <a href="{{ .URL | relLangURL }}" {{ if eq $menuItemURL $pageURL }}class="active"{{ end }}>{{ .Name }}</a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+<br/>
+<!-- end website header -->
+  

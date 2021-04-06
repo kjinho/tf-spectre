@@ -1,0 +1,33 @@
+{{ define "main" }}
+<h1>{{ .Title | i18n }}</h1>
+
+<p>{{ i18n "listIntro" | safeHTML }}</p>
+
+<p class="rss-subscribe">Subscribe <a href="{{ "/index.xml" | relLangURL }}">via RSS</a>.</p>
+
+<!-- begin post list -->
+<div class="container">
+    <div class="columns">
+        {{ range .Pages.ByPublishDate.Reverse }}
+        <div class="column col-sm-12 col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{ .Title }}</h4>
+                    {{ $dateFormat := .Site.Params.dateFormat | default "January 2, 2006" }}
+                    <h6 class="card-meta">{{ .PublishDate.Format $dateFormat }}</h6>
+                </div>
+                <div class="card-body">
+                    {{ .Page.Params.excerpt }}
+                </div>
+                <div class="card-footer">
+                    <a href="{{ .Permalink | relLangURL }}" class="btn">{{ i18n "more" }}</a>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+<!-- end post list -->
+<br/>
+
+{{ end }}

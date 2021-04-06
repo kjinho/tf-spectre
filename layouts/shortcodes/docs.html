@@ -1,0 +1,12 @@
+<div class="column col-sm-12 col-4">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ .Get "name" }}</h4>
+            <h6 class="card-meta">ECF Doc. {{ .Get "file" }}</h6>
+            <h6 class="card-meta">Filed {{ dateFormat "2006-01-30" (.Get "date")  }}</h6>
+        </div>
+        <div class="card-footer">
+            <a href="{{ print (relURL "/docs/") (.Get "file") ".pdf" }}" class="btn"><i class="fas fa-file-pdf"></i> Download</a>
+        </div>
+    </div>
+</div>

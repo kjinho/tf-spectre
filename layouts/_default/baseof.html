@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "header.html" . -}}
+
+        <div class="container">
+            <div class="columns">
+                <div class="column centered">
+
+                    <div id="content">
+                        {{- block "main" . }}{{- end }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {{- partial "footer.html" . -}}
+
+        {{- partial "analytics.html" . -}}
+
+    </body>
+</html>

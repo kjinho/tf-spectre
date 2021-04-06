@@ -1,0 +1,30 @@
+<!-- begin footer -->
+<div class="container">
+    <div class="columns">
+        <div class="column col-4 col-md-5 col-sm-6 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title text-bold">{{ $.Site.Params.author }}</div>
+                    <div class="card-meta text-italic">{{ $.Site.Params.slogan }}</div>
+                </div>
+                <div class="card-body">
+                    {{ $address := $.Site.Params.address }}
+                    <div>{{ replace $address "\n" "<br/>" | safeHTML }}</div>
+                    <div><a href="{{ $.Site.Params.mainurl }}">{{ $.Site.Params.mainurl }}</a></div>
+                    <div><a href="mailto:{{ $.Site.Params.email }}">{{ $.Site.Params.email }}</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="column col-md-7 col-sm-6 col-xs-12">
+            <div class="card">
+            <div class="card-body">
+                <p>{{ $.Site.Params.description }}</p>
+    
+                <p>{{ $.Site.Copyright }} For more information, including image credits, see <a href="{{ "/legal" | relURL }}">here</a>.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end footer -->
+  
